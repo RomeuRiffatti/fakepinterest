@@ -1,4 +1,4 @@
-from fakepintereskcerto.__init__ import app
+from fakepintereskcerto import app
 
 if __name__ == "__main__":
     app.run(debug=False)

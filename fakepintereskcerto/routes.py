@@ -15,8 +15,6 @@ def homepage():
         if usuario and bcrypt.check_password_hash(usuario.senha, formlogin.senha.data): ##Aqui ele compara senha criptografada, o Bcrypt acessa a senha verdadeira atraves da encriptada e compara com a senha passada pelo usuario no formlogin
             login_user(usuario)
             return redirect(url_for("perfil",id_usuario=usuario.id))
-        else:
-            return render_template('homepage.html',form=formlogin)
 
 
 @app.route('/criarconta', methods=['GET','POST'])
