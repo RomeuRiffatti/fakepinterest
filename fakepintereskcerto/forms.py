@@ -13,6 +13,9 @@ class FormLogin(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()   ##quando acessa a database por outr dado que nao seja o id tem que ser com o filter by, senão pode ser com o get
         if not usuario:   ## na linha acima, o primeiro email é o recebido pela função e o segundo são as infos do DB
             raise ValidationError("Usuário inxistente. Crie uma conta para continuar")
+    
+    def validade_senha(self,senha):
+        usuario = Usuario.query
 
 class FormCriarConta(FlaskForm):
     email = StringField("E-mail",validators=[DataRequired(),Email()])

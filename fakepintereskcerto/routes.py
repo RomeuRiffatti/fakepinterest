@@ -11,11 +11,12 @@ from werkzeug.utils import secure_filename
 def homepage():
     formlogin = FormLogin()
     if formlogin.validate_on_submit():
-        usuario =Usuario.query.filter_by(email=formlogin.email.data).first()
+        usuario = Usuario.query.filter_by(email=formlogin.email.data).first()
         if usuario and bcrypt.check_password_hash(usuario.senha, formlogin.senha.data): ##Aqui ele compara senha criptografada, o Bcrypt acessa a senha verdadeira atraves da encriptada e compara com a senha passada pelo usuario no formlogin
             login_user(usuario)
             return redirect(url_for("perfil",id_usuario=usuario.id))
-    return render_template('homepage.html',form=formlogin)
+        else:
+            return render_template('homepage.html',form=formlogin)
 
 
 @app.route('/criarconta', methods=['GET','POST'])
